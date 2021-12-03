@@ -1,0 +1,22 @@
+.usersPage {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.usersList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    margin: 0;
+    padding: 0 10px;
+}
+
+@media (max-width: 425px) {
+    .usersList {
+        display: block;
+    }
+}

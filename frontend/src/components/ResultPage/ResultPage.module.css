@@ -1,0 +1,23 @@
+.resultPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;    
+}
+
+.returnLink {
+    display: block;
+    width: 120px;
+    line-height: 50px;
+    text-decoration: none;
+    text-align: center;
+    background: #f0f0f0;
+    color: #000;
+    transition: 0.3s;
+    outline: none;
+    margin: auto;
+}
+
+.returnLink:hover {
+    background: #d0d0d0;
+}

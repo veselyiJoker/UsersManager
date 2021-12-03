@@ -1,0 +1,13 @@
+.usersTop {
+    background: #f0f0f0;
+    background-image: url(./users-top-bg.svg);
+    background-size: cover;
+    height: 340px;
+    margin-bottom: 50px;
+}
+    
+@media (max-width: 600px) {
+    .usersTop {
+        height: 200px;
+    }
+}
