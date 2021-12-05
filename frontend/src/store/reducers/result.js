@@ -1,4 +1,4 @@
-import { SET_REDIRECT_RESULT_TO_HOME_PAGE, SET_RESULT } from "../constants";
+import { SET_REDIRECT_RESULT_TO_HOME_PAGE, SET_RESULT, SET_RESULT_FETCHING } from "../constants";
 
 
 let initialState = {
@@ -19,6 +19,12 @@ const resultReducer = (state = initialState, action) => {
                 lastName: action.payload.last_name,
                 updatedAt: action.payload.updatedAt,
                 isLoaded: true,
+            }
+
+        case SET_RESULT_FETCHING: 
+            return {
+                ...state,
+                isLoaded: action.payload,
             }
 
         case SET_REDIRECT_RESULT_TO_HOME_PAGE:

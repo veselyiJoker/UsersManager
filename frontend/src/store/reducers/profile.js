@@ -4,7 +4,7 @@ import {
     SET_FIRST_NAME_TEXT,
     SET_LAST_NAME_TEXT,
     SET_PROFILE,
-    UPDATE_PROFILE, 
+    // UPDATE_PROFILE, 
 } from "../constants"
 
 
@@ -31,11 +31,11 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.payload,
             }
         
-        case UPDATE_PROFILE: 
-            return {
-                ...state,
-                profile: action.payload
-            }
+        // case UPDATE_PROFILE: 
+        //     return {
+        //         ...state,
+        //         profile: action.payload
+        //     }
 
         case FETCH_UPDATE_PROFILE: 
             return {

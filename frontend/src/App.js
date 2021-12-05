@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router';
 import './App.css';
 import Error from './components/Error';
-import ProfilePage from './components/ProfilePage/ProfilePage';
-import ResultPage from './components/ResultPage/ResultPage';
-import UsersPage from './components/UsersPage/UsersPage';
+import ProfilePageContainer from './components/ProfilePage/ProfilePageContainer';
+import ResultPageContainer from './components/ResultPage/ResultPageContainer';
+import UsersPageContainer from './components/UsersPage/UsersPageContainer';
 
 const App = () => { 
   return (
@@ -11,20 +11,15 @@ const App = () => {
             <main>
                 <Switch>
                     <Route exact path='/' render = {
-                        ()=> <UsersPage />
+                        ()=> <UsersPageContainer />
                     }/>
 
                     <Route path='/ProfilePage/:id' render = {
-                        ()=> <ProfilePage />
+                        ()=> <ProfilePageContainer />
                     }/>
 
                     <Route path='/ResultPage' render = {
-                        ()=> <ResultPage /> 
-                    }/>
-
-                    
-                    <Route path='/Error' render = {
-                        ()=> <Error /> 
+                        ()=> <ResultPageContainer /> 
                     }/>
 
                     <Route path='*' render = {

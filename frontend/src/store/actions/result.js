@@ -1,12 +1,20 @@
 import { 
+    SET_RESULT, 
+    SET_RESULT_FETCHING,
     SET_REDIRECT_RESULT_TO_HOME_PAGE,
-    SET_RESULT 
 } from "../constants"
 
 export const setResult = (result) => {
     return {
         type: SET_RESULT,
         payload: result,
+    }
+}
+
+export const setResultFetching = (isLoaded) => {
+    return {
+        type: SET_RESULT_FETCHING,
+        isLoaded: isLoaded,
     }
 }
 
