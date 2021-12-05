@@ -1,11 +1,12 @@
-import { SET_RESULT, SET_RESULT_FETCHING } from "../constants";
+import { SET_REDIRECT_RESULT_TO_HOME_PAGE, SET_RESULT } from "../constants";
 
 
 let initialState = {
-    firstName: null,
-    lastName: null,
-    updatedAt: null,
-    isFetching: false,
+    firstName: '',
+    lastName: '',
+    updatedAt: '',
+    isLoaded: false,
+    redirectToHomePage: true,
 }
 
 const resultReducer = (state = initialState, action) => {
@@ -17,16 +18,14 @@ const resultReducer = (state = initialState, action) => {
                 firstName: action.payload.first_name,
                 lastName: action.payload.last_name,
                 updatedAt: action.payload.updatedAt,
-                isFetching: true,
+                isLoaded: true,
             }
 
-        case SET_RESULT_FETCHING:
+        case SET_REDIRECT_RESULT_TO_HOME_PAGE:
             return {
                 ...state,
-                isFetching: action.payload,
+                redirectToHomePage: action.payload,
             }
-                
-        
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import { 
-    SET_RESULT_FETCHING, 
+    SET_REDIRECT_RESULT_TO_HOME_PAGE,
     SET_RESULT 
 } from "../constants"
 
@@ -10,9 +10,9 @@ export const setResult = (result) => {
     }
 }
 
-export const setResultFetching = (isFetching) => {
+export const setRedirectResultToHomePage = (isRedirect) => {
     return {
-        type: SET_RESULT_FETCHING,
-        payload: isFetching,
+        type: SET_REDIRECT_RESULT_TO_HOME_PAGE,
+        payload: isRedirect,
     }
 }

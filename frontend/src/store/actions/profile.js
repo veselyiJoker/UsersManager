@@ -4,6 +4,7 @@ import {
     SET_FIRST_NAME_TEXT,
     SET_LAST_NAME_TEXT,
     SET_PROFILE,
+    SET_REDIRECT_PROFILE_TO_HOME_PAGE,
     UPDATE_PROFILE,
 } from "../constants";
 
@@ -39,6 +40,13 @@ export const fetchUpdateProfile = (profileId) => {
     return {
         type: FETCH_UPDATE_PROFILE,
         payload: profileId,
+    }
+}
+
+export const setRedirectProfileToHomePage = (isRedirect) => {
+    return {
+        type: SET_REDIRECT_PROFILE_TO_HOME_PAGE,
+        payload: isRedirect,
     }
 }
 

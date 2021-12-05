@@ -1,6 +1,6 @@
 import {
     FETCH_UPDATE_PROFILE,
-    SET_FETCH_ERROR,
+    SET_REDIRECT_PROFILE_TO_HOME_PAGE,
     SET_FIRST_NAME_TEXT,
     SET_LAST_NAME_TEXT,
     SET_PROFILE,
@@ -11,16 +11,14 @@ import {
 const initialState = {
     profile: {
         _id: null,
-        firstName: null,
-        lastName: null,
-        email: null,
+        firstName: '',
+        lastName: '',
+        email: '',
         avatar: null,
-        updatedAt: null,
+        updatedAt: '',
         __v: null,
     },
-    firstNameText: '',
-    lastNameText: '',
-    isFetchError: false,
+    redirectToHomePage: true,
 }
 
 
@@ -31,8 +29,6 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: action.payload,
-                firstNameText: action.payload.firstName,
-                lastNameText: action.payload.lastName,
             }
         
         case UPDATE_PROFILE: 
@@ -58,11 +54,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 lastNameText: action.payload,
             }
-        
-        case SET_FETCH_ERROR:
+
+        case SET_REDIRECT_PROFILE_TO_HOME_PAGE:
             return {
                 ...state,
-                isFetchError: action.payload,
+                redirectToHomePage: action.payload
             }
 
         

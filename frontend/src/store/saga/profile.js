@@ -14,6 +14,7 @@ const fetchUpdateProfile = (updatedProfileData) => axios ({
         _id: updatedProfileData._id,
         first_name: updatedProfileData.first_name,
         last_name: updatedProfileData.last_name,
+        upadtedAt: updatedProfileData.upadtedAt,
     }
 });
 
@@ -22,6 +23,7 @@ function* updateProfileWorker(action) {
     const response = yield call(fetchUpdateProfile, action.payload);
 
     yield put(setResult(response.data))
+
     yield put(updateUsers(
         users.map(
             elem => elem._id === response.data._id 
@@ -33,6 +35,7 @@ function* updateProfileWorker(action) {
             : elem
         )
     ))
+
 }
 
 export function* profileWatcher() {
