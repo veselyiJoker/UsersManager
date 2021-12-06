@@ -1,5 +1,4 @@
-import { SET_REDIRECT_RESULT_TO_HOME_PAGE, SET_RESULT, SET_RESULT_FETCHING } from "../constants";
-
+import types from "../types";
 
 let initialState = {
     firstName: '',
@@ -12,7 +11,7 @@ let initialState = {
 const resultReducer = (state = initialState, action) => {
     
     switch (action.type) {
-        case SET_RESULT:
+        case types.SET_RESULT:
             return {
                 ...state,
                 firstName: action.payload.first_name,
@@ -21,13 +20,13 @@ const resultReducer = (state = initialState, action) => {
                 isLoaded: true,
             }
 
-        case SET_RESULT_FETCHING: 
+        case types.SET_RESULT_FETCHING: 
             return {
                 ...state,
                 isLoaded: action.payload,
             }
 
-        case SET_REDIRECT_RESULT_TO_HOME_PAGE:
+        case types.SET_REDIRECT_RESULT_TO_HOME_PAGE:
             return {
                 ...state,
                 redirectToHomePage: action.payload,

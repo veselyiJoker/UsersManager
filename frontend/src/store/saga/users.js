@@ -2,7 +2,7 @@ import axios from "axios";
 import { put, takeEvery, call} from "redux-saga/effects"
 import { usersAdapter } from "../../assets/utils";
 import { addUsers, setUsers } from "../actions/users";
-import { FETCH_ADD_USERS, FETCH_SET_USERS } from "../constants";
+import types from "../types";
 
 const fetchSetUsers = () => axios ({
     method: "get",
@@ -25,7 +25,7 @@ function* addUsersWorker(action) {
 }
 
 export function* usersWatcher() {
-    yield takeEvery(FETCH_SET_USERS, fetchUsersWorker)
-    yield takeEvery(FETCH_ADD_USERS, addUsersWorker)
+    yield takeEvery(types.FETCH_SET_USERS, fetchUsersWorker)
+    yield takeEvery(types.FETCH_ADD_USERS, addUsersWorker)
 }
 

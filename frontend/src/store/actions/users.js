@@ -1,46 +1,37 @@
-import { 
-    SET_USERS, 
-    SET_CURRENT_PAGE, 
-    SET_TOTAL_PAGES, 
-    ADD_USERS,
-    FETCH_SET_USERS,
-    FETCH_ADD_USERS,
-    USERS_FETCHING,
-    UPDATE_USERS
-} from "../constants.js"
+import types from "../types.js"
 
 
 export const setUsers = (users) => {
     return {
-        type: SET_USERS,
+        type: types.SET_USERS,
         payload: users,
     }
 }
 
 export const fetchSetUsers = () => {
     return {
-        type: FETCH_SET_USERS,
+        type: types.FETCH_SET_USERS,
     }
 };
 
 
 export const addUsers = (users) => {
     return {
-        type: ADD_USERS,
+        type: types.ADD_USERS,
         payload: users,
     }
 }
 
 export const updateUsers = (users) => {
     return {
-        type: UPDATE_USERS,
+        type: types.UPDATE_USERS,
         payload: users,
     }
 }
 
 export const fetchAddUsers = (pageNumber) => {
     return {
-        type: FETCH_ADD_USERS,
+        type: types.FETCH_ADD_USERS,
         payload: pageNumber,
     }
 }
@@ -48,21 +39,21 @@ export const fetchAddUsers = (pageNumber) => {
 
 export const usersFetching = (isLoaded) => {
     return {
-        type: USERS_FETCHING,
+        type: types.USERS_FETCHING,
         payload: isLoaded,
     }
 }
 
 export const setCurrentPage = (currentPage) => {
     return {
-        type: SET_CURRENT_PAGE,
+        type: types.SET_CURRENT_PAGE,
         payload: currentPage,
     }
 }
 
 export const setTotalPages = (totalPages) => {
     return {
-        type: SET_TOTAL_PAGES,
+        type: types.SET_TOTAL_PAGES,
         payload: totalPages,
     }
 }

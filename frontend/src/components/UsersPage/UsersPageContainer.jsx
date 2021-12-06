@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import style from './UsersPage.module.css';
 import {
     addUsers,
     setCurrentPage,
@@ -10,8 +9,7 @@ import {
     fetchSetUsers,
     fetchAddUsers,
 } from '../../store/actions/users.js';
-import UsersTop from './UsersTop/UsersTop';
-import User from './User/User';
+import UsersPage from './UsersPage.jsx';
 
 class UsersPageContainer extends PureComponent {
 
@@ -34,7 +32,7 @@ class UsersPageContainer extends PureComponent {
     }
 
     componentDidMount() {
-        if (this.props.users.length === 0) {
+        if (!this.props.users.length) {
             this.props.fetchSetUsers()
         }
         document.addEventListener('scroll', this.scrollHandler);
@@ -44,25 +42,11 @@ class UsersPageContainer extends PureComponent {
         document.removeEventListener('scroll', this.scrollHandler);
     }
 
-    render () {
+    render() {
         return (
-            <section className={style.usersPage}>
-                <UsersTop />
-                <ul className={style.usersList}>
-                        { this.props.users.map(elem => {
-                            return (
-                                <User
-                                    id = {elem._id}
-                                    key = {elem._id}
-                                    firstName = {elem.firstName} 
-                                    lastName = {elem.lastName}
-                                    email = {elem.email}
-                                    avatar = {elem.avatar}
-                                />
-                            )
-                        }) }
-                </ul>
-            </section>
+            <UsersPage
+                users = {this.props.users}
+            />
         )
     }
     
@@ -89,11 +73,12 @@ const mapStateToProps = (state) => {
     }
 }
 
+
 export default connect(mapStateToProps, {
-    fetchSetUsers: fetchSetUsers,
-    fetchAddUsers: fetchAddUsers,
-    addUsers: addUsers,
-    setCurrentPage: setCurrentPage,
-    setTotalPages: setTotalPages,
-    usersFetching: usersFetching,
+    fetchSetUsers,
+    fetchAddUsers,
+    addUsers,
+    setCurrentPage,
+    setTotalPages,
+    usersFetching,
 })(UsersPageContainer);

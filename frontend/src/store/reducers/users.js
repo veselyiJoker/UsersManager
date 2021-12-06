@@ -1,7 +1,4 @@
-import { ADD_USERS, SET_USERS, UPDATE_USERS } from '../constants.js';
-import { USERS_FETCHING } from '../constants.js';
-import { SET_CURRENT_PAGE } from '../constants.js';
-import { SET_TOTAL_PAGES } from '../constants.js';
+import types from '../types.js';
 
 let initialState = {
     users: [],
@@ -15,14 +12,14 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case SET_USERS:
+        case types.SET_USERS:
             return {
                 ...state,
                 ...action.payload,
                 isLoaded: true,
             }
 
-        case ADD_USERS:
+        case types.ADD_USERS:
             return {
                 ...state,
                 users: [
@@ -32,25 +29,25 @@ const usersReducer = (state = initialState, action) => {
                 isLoaded: true,
             }
 
-        case UPDATE_USERS: 
+        case types.UPDATE_USERS: 
             return {
                 ...state,
                 users: action.payload
             }
 
-        case USERS_FETCHING:
+        case types.USERS_FETCHING:
             return {
                 ...state,
                 isLoaded: action.payload,
             }
 
-        case SET_CURRENT_PAGE:
+        case types.SET_CURRENT_PAGE:
             return {
                 ...state,
                 currentPage: action.payload,
             }
         
-        case SET_TOTAL_PAGES: 
+        case types.SET_TOTAL_PAGES: 
             return {
                 ...state,
                 totalPages: action.payload,

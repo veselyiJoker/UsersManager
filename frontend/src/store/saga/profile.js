@@ -1,6 +1,6 @@
 import axios from "axios";
 import { put, takeEvery, call, select} from "redux-saga/effects"
-import { FETCH_UPDATE_PROFILE } from "../constants";
+import types from "../types";
 import * as selectors from '../selectors/selectors';
 import { updateUsers } from "../actions/users";
 import { setResult } from "../actions/result";
@@ -39,6 +39,6 @@ function* updateProfileWorker(action) {
 }
 
 export function* profileWatcher() {
-    yield takeEvery(FETCH_UPDATE_PROFILE, updateProfileWorker)
+    yield takeEvery(types.FETCH_UPDATE_PROFILE, updateProfileWorker)
 }
 

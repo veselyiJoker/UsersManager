@@ -1,31 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import {setResult, setResultFetching} from '../../store/actions/result';
-import Preloader from '../../assets/Preloader/Preloader'
-import style from './ResultPage.module.css';
+import ResultPage from './ResultPage';
 
-
-const getDoubleDigitValue = (value) => {
-    return value < 10 ? '0' + value : value
-}
-
-const convertDate = (milliseconds) => {
-    const date = new Date(+milliseconds)
-    return `
-        ${
-            getDoubleDigitValue(date.getDate())
-            + '.' + getDoubleDigitValue(date.getMonth())
-            + '.' + date.getFullYear() 
-            + ' в ' + getDoubleDigitValue(date.getHours())
-            + ':' + getDoubleDigitValue(date.getMinutes())
-            + ':' + getDoubleDigitValue(date.getSeconds())
-        }
-    `;
-}
-    
 class ResultPageContainer extends Component {
 
     componentDidMount() {
@@ -40,18 +19,12 @@ class ResultPageContainer extends Component {
 
     render () {
         return (
-            <section className={style.resultPage}>
-                {this.props.isLoaded
-                    ?   <div className={style.content}>
-                            <h2>Result Changed Info</h2>
-                            <p>First Name : <span>{this.props.firstName}</span></p>
-                            <p>Last Name : <span>{this.props.lastName}</span></p>
-                            <p>Date : <span>{convertDate(this.props.updatedAt)}</span></p>
-                            <Link to="/" className={style.returnLink}>Return</Link>
-                        </div>
-                    : <Preloader />
-                }
-            </section>
+            <ResultPage
+                firstName = {this.props.resultPage.firstName}
+                lastName = {this.props.resultPage.lastName}
+                updatedAt = {this.props.resultPage.updatedAt}
+                isLoaded = {this.props.resultPage.isLoaded}
+            />
         )
     }
 }

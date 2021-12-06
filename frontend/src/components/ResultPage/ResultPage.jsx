@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
-import { setResult} from '../../store/actions/result';
-import Preloader from '../../assets/Preloader/Preloader'
+import React from 'react';
 import style from './ResultPage.module.css';
-
+import { Link } from 'react-router-dom';
+import Preloader from '../../assets/Preloader/Preloader'
 
 const getDoubleDigitValue = (value) => {
     return value < 10 ? '0' + value : value
@@ -25,53 +20,23 @@ const convertDate = (milliseconds) => {
         }
     `;
 }
-    
-class ResultPage extends Component {
 
-    componentDidMount() {
-        if (this.props.redirectToHomePage) {
-            this.props.history.push('/');
-        }
-    }
+const ResultPage = (props) => {
 
-    render () {
-        return (
-            <section className={style.resultPage}>
-                {this.props.isLoaded
-                    ?   <div className={style.content}>
-                            <h2>Result Changed Info</h2>
-                            <p>First Name : <span>{this.props.firstName}</span></p>
-                            <p>Last Name : <span>{this.props.lastName}</span></p>
-                            <p>Date : <span>{convertDate(this.props.updatedAt)}</span></p>
-                            <Link to="/" className={style.returnLink}>Return</Link>
-                        </div>
-                    : <Preloader />
-                }
-            </section>
-        )
-    }
+	return (
+        <section className={style.resultPage}>
+            {props.isLoaded
+                ?   <div className={style.content}>
+                        <h2>Result Changed Info</h2>
+                        <p>First Name : <span>{props.firstName}</span></p>
+                        <p>Last Name : <span>{props.lastName}</span></p>
+                        <p>Date : <span>{convertDate(props.updatedAt)}</span></p>
+                        <Link to="/" className={style.returnLink}>Return</Link>
+                    </div>
+                : <Preloader />
+            }
+        </section>
+	);
 }
 
-
-ResultPage.propTypes = {
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    updatedAt: PropTypes.string,
-    isFetching: PropTypes.bool
-}
-
-const WithUrlDataContainerComponent = withRouter(ResultPage);
-
-
-const mapStateToProps = (state) => {
-    return {
-        firstName: state.resultPage.firstName,
-        lastName: state.resultPage.lastName,
-        updatedAt: state.resultPage.updatedAt,
-        isLoaded: state.resultPage.isLoaded,
-        redirectToHomePage: state.resultPage.redirectToHomePage,
-    }
-}
-
-
-export default connect(mapStateToProps, {setResult})(WithUrlDataContainerComponent);
+export default ResultPage;
