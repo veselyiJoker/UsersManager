@@ -19,7 +19,7 @@ const App = () => {
                             ()=> <UsersPageContainer />
                         }/>
 
-                        <Route path='/ProfilePage/:id' render = {
+                        <Route path='/ProfilePage' render = {
                             ()=> <ProfilePageContainer />
                         }/>
 

@@ -1,4 +1,4 @@
-import types from '../types.js';
+import types from '../constants.js';
 
 import usersReducer from './users'
 

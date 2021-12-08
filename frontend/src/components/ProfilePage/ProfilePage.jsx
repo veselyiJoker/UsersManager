@@ -1,24 +1,23 @@
 import React from 'react';
 import defaultUserIcon from '../../../src/assets/images/default-user-icon.svg';
+import { baseURL } from '../../store/constants';
 import style from './ProfilePage.module.css';
-
-const baseURL = 'http://localhost:3000/';
 
 const ProfilePage = (props) => {
 
-    const handlerOnFirstNameChange = (e) => {
+    const handlerFirstNameChange = (e) => {
         props.onFirstNameChange(e)
     }
 
-    const handlerOnLastNameChange = (e) => {
+    const handlerLastNameChange = (e) => {
         props.onLastNameChange(e)
     }
 
-    const handlerOnSubmit = (e) => {
+    const handlerSubmit = (e) => {
         props.onSubmit(e)
     }
     
-    const handlerOnGoBack = () => {
+    const handlerGoBack = () => {
         props.onGoBack()
     }
 
@@ -26,7 +25,7 @@ const ProfilePage = (props) => {
         <section className={style.profilePage}>
             <div className={style.content}>
                 <h2 className={style.profilePageTitle}>Change Profile Info</h2>
-                <form onSubmit={handlerOnSubmit}>
+                <form onSubmit={handlerSubmit}>
                     <img className={style.photo} src={baseURL + (props.profile.avatar || defaultUserIcon)} alt={props.profile.firstName + ' avatar'}/>   
                     <label className={style.firstName}>
                         First Name : 
@@ -35,7 +34,7 @@ const ProfilePage = (props) => {
                             name='firstName'
                             value={props.firstNameText}
                             placeholder={props.profile.firstName}
-                            onChange={handlerOnFirstNameChange}
+                            onChange={handlerFirstNameChange}
                             className={style.firstNameInput}
                         /> 
                     </label>
@@ -46,7 +45,7 @@ const ProfilePage = (props) => {
                             name='lastName'
                             value={props.lastNameText}
                             placeholder={props.profile.lastName}
-                            onChange={handlerOnLastNameChange}
+                            onChange={handlerLastNameChange}
                             className={style.lastNameInput}
                         /> 
                     </label>
@@ -54,7 +53,7 @@ const ProfilePage = (props) => {
                         Email : <span>{props.profile.email}</span>
                     </p>
                     <div className={style.profileBottom}>
-                        <button type='button' onClick={handlerOnGoBack} className={style.returnLink}>Return</button>
+                        <button type='button' onClick={handlerGoBack} className={style.returnLink}>Return</button>
                         <button type='submit' className={style.submit}>Save</button>
                     </div>
                 </form>

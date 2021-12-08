@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import {
-    fetchUpdateProfile,
-    setProfile,
-} from '../../store/actions/profile';
+import { setProfile } from '../../store/actions/profile';
+import { fetchUpdateProfile } from '../../store/saga/actions/profile';
 import { setRedirectResultToHomePage, setResult} from '../../store/actions/result.js';
 import ProfilePage from './ProfilePage';
 
@@ -41,7 +39,7 @@ class ProfilePageContainer extends React.PureComponent {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.fetchUpdateProfile({
-            _id: this.props.match.params.id,
+            _id: this.props.profile._id,
             first_name: this.state.firstNameText,
             last_name: this.state.lastNameText,
             updatedAt: Date.now(),
@@ -56,7 +54,7 @@ class ProfilePageContainer extends React.PureComponent {
     }
 
     componentDidMount() {
-        if (this.props.redirectToHomePage) {
+        if (this.props.isRedirectToHomePage) {
             this.props.history.push('/'); 
         }
     }
@@ -67,7 +65,7 @@ class ProfilePageContainer extends React.PureComponent {
                 profile = {this.props.profile}
                 firstNameText = {this.state.firstNameText}
                 lastNameText = {this.state.lastNameText}
-                redirectToHomePage = {this.props.redirectToHomePage}
+                isRedirectToHomePage = {this.props.isRedirectToHomePage}
                 onFirstNameChange = {this.onFirstNameChange}
                 onLastNameChange = {this.onLastNameChange}
                 onSubmit = {this.onSubmit}
@@ -92,7 +90,7 @@ const WithUrlDataContainerComponent = withRouter(ProfilePageContainer);
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        redirectToHomePage: state.profilePage.redirectToHomePage,
+        isRedirectToHomePage: state.profilePage.isRedirectToHomePage,
     }
 };
 

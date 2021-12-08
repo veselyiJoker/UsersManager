@@ -8,7 +8,7 @@ import ResultPage from './ResultPage';
 class ResultPageContainer extends Component {
 
     componentDidMount() {
-        if (this.props.redirectToHomePage) {
+        if (this.props.isRedirectToHomePage) {
             this.props.history.push('/');
         }
     }
@@ -20,10 +20,10 @@ class ResultPageContainer extends Component {
     render () {
         return (
             <ResultPage
-                firstName = {this.props.resultPage.firstName}
-                lastName = {this.props.resultPage.lastName}
-                updatedAt = {this.props.resultPage.updatedAt}
-                isLoaded = {this.props.resultPage.isLoaded}
+                firstName = {this.props.firstName}
+                lastName = {this.props.lastName}
+                updatedAt = {this.props.updatedAt}
+                isLoaded = {this.props.isLoaded}
             />
         )
     }
@@ -39,17 +39,15 @@ ResultPageContainer.propTypes = {
 
 const WithUrlDataContainerComponent = withRouter(ResultPageContainer);
 
-
 const mapStateToProps = (state) => {
     return {
         firstName: state.resultPage.firstName,
         lastName: state.resultPage.lastName,
         updatedAt: state.resultPage.updatedAt,
         isLoaded: state.resultPage.isLoaded,
-        redirectToHomePage: state.resultPage.redirectToHomePage,
+        isRedirectToHomePage: state.resultPage.isRedirectToHomePage,
     }
 }
-
 
 export default connect(mapStateToProps, {
     setResult,

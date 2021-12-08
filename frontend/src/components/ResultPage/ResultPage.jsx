@@ -2,27 +2,9 @@ import React from 'react';
 import style from './ResultPage.module.css';
 import { Link } from 'react-router-dom';
 import Preloader from '../../assets/Preloader/Preloader'
-
-const getDoubleDigitValue = (value) => {
-    return value < 10 ? '0' + value : value
-}
-
-const convertDate = (milliseconds) => {
-    const date = new Date(+milliseconds)
-    return `
-        ${
-            getDoubleDigitValue(date.getDate())
-            + '.' + getDoubleDigitValue(date.getMonth())
-            + '.' + date.getFullYear() 
-            + ' в ' + getDoubleDigitValue(date.getHours())
-            + ':' + getDoubleDigitValue(date.getMinutes())
-            + ':' + getDoubleDigitValue(date.getSeconds())
-        }
-    `;
-}
+import { convertDate } from '../../assets/utils';
 
 const ResultPage = (props) => {
-
 	return (
         <section className={style.resultPage}>
             {props.isLoaded

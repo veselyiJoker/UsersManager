@@ -1,11 +1,9 @@
 import axios from "axios";
 import { put, takeEvery, call, select} from "redux-saga/effects"
-import types from "../types";
+import { baseURL, Types } from "../constants";
 import * as selectors from '../selectors/selectors';
 import { updateUsers } from "../actions/users";
 import { setResult } from "../actions/result";
-
-const baseURL = 'http://localhost:3000/';
 
 const fetchUpdateProfile = (updatedProfileData) => axios ({
     method: "put",
@@ -14,7 +12,7 @@ const fetchUpdateProfile = (updatedProfileData) => axios ({
         _id: updatedProfileData._id,
         first_name: updatedProfileData.first_name,
         last_name: updatedProfileData.last_name,
-        upadtedAt: updatedProfileData.upadtedAt,
+        updatedAt: updatedProfileData.updatedAt,
     }
 });
 
@@ -30,7 +28,8 @@ function* updateProfileWorker(action) {
             ? { 
                 ...elem,
                 firstName: response.data.first_name,
-                lastName: response.data.last_name
+                lastName: response.data.last_name,
+                updatedAt: response.data.updatedAt,
               } 
             : elem
         )
@@ -39,6 +38,6 @@ function* updateProfileWorker(action) {
 }
 
 export function* profileWatcher() {
-    yield takeEvery(types.FETCH_UPDATE_PROFILE, updateProfileWorker)
+    yield takeEvery(Types.FETCH_UPDATE_PROFILE, updateProfileWorker)
 }
 

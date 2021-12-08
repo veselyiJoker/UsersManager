@@ -17,3 +17,23 @@ export const usersAdapter = (data) => {
         }),
     };
 };
+
+export const convertDate = (milliseconds) => {
+    
+    const date = new Date(+milliseconds)
+
+    const getDoubleDigitValue = (value) => {
+        return value < 10 ? '0' + value : value
+    }
+
+    return `
+        ${
+            getDoubleDigitValue(date.getDate())
+            + '.' + getDoubleDigitValue(date.getMonth())
+            + '.' + date.getFullYear() 
+            + ' в ' + getDoubleDigitValue(date.getHours())
+            + ':' + getDoubleDigitValue(date.getMinutes())
+            + ':' + getDoubleDigitValue(date.getSeconds())
+        }
+    `;
+}

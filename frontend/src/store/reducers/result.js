@@ -1,17 +1,17 @@
-import types from "../types";
+import { Types } from "../constants.js";
 
 let initialState = {
     firstName: '',
     lastName: '',
     updatedAt: '',
     isLoaded: false,
-    redirectToHomePage: true,
+    isRedirectToHomePage: true,
 }
 
 const resultReducer = (state = initialState, action) => {
     
     switch (action.type) {
-        case types.SET_RESULT:
+        case Types.SET_RESULT:
             return {
                 ...state,
                 firstName: action.payload.first_name,
@@ -20,16 +20,16 @@ const resultReducer = (state = initialState, action) => {
                 isLoaded: true,
             }
 
-        case types.SET_RESULT_FETCHING: 
+        case Types.SET_RESULT_FETCHING: 
             return {
                 ...state,
                 isLoaded: action.payload,
             }
 
-        case types.SET_REDIRECT_RESULT_TO_HOME_PAGE:
+        case Types.SET_REDIRECT_RESULT_TO_HOME_PAGE:
             return {
                 ...state,
-                redirectToHomePage: action.payload,
+                isRedirectToHomePage: action.payload,
             }
         default:
             return state;

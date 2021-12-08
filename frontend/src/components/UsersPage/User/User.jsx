@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setProfile, setRedirectProfileToHomePage } from '../../../store/actions/profile'
 import PropTypes from 'prop-types';
@@ -8,17 +7,24 @@ import defaultUserIcon from './../../../assets/images/default-user-icon.svg';
 
 
 class User extends PureComponent {
-  handlerOnUserIconClick = () => {
-    this.props.setProfile(this.props.users.find(elem => elem._id === this.props.id))
-    this.props.setRedirectProfileToHomePage(false)
+
+  handlerUserClick = () => {
+    this.props.openPopup({
+      _id: this.props._id,
+      firstName: this.props.firstName,
+      lastName: this.props.lastName,
+      email: this.props.email,
+      avatar: this.props.avatar,
+      updatedAt: this.props.updatedAt,
+    })
   }
 
   render () {
     return (
       <li className={s.user}>
-          <Link to={'ProfilePage/' + this.props.id} onClick={this.handlerOnUserIconClick}>
+          <div onClick={this.handlerUserClick}>
             <img className={s.userPhoto} src={this.props.avatar || defaultUserIcon} alt={this.props.firstName + ' avatar'}/>
-          </Link>
+          </div>
           <div className={s.userInfo}>
               <p className={s.userFirstName}>{this.props.firstName}</p>
               <p className={s.userLastName}>{this.props.lastName}</p>
@@ -30,7 +36,7 @@ class User extends PureComponent {
 }
 
 User.propTypes = {
-  id: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   email: PropTypes.string,

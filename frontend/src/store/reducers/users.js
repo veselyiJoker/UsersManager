@@ -1,4 +1,4 @@
-import types from '../types.js';
+import { Types } from '../constants.js';
 
 let initialState = {
     users: [],
@@ -12,14 +12,14 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case types.SET_USERS:
+        case Types.SET_USERS:
             return {
                 ...state,
                 ...action.payload,
                 isLoaded: true,
             }
 
-        case types.ADD_USERS:
+        case Types.ADD_USERS:
             return {
                 ...state,
                 users: [
@@ -29,25 +29,25 @@ const usersReducer = (state = initialState, action) => {
                 isLoaded: true,
             }
 
-        case types.UPDATE_USERS: 
+        case Types.UPDATE_USERS: 
             return {
                 ...state,
                 users: action.payload
             }
 
-        case types.USERS_FETCHING:
+        case Types.USERS_FETCHING:
             return {
                 ...state,
                 isLoaded: action.payload,
             }
 
-        case types.SET_CURRENT_PAGE:
+        case Types.SET_CURRENT_PAGE:
             return {
                 ...state,
                 currentPage: action.payload,
             }
         
-        case types.SET_TOTAL_PAGES: 
+        case Types.SET_TOTAL_PAGES: 
             return {
                 ...state,
                 totalPages: action.payload,
